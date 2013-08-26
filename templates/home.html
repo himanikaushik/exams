@@ -1,0 +1,12 @@
+{% load pagination_tags %}
+{% autopaginate qs 10 %}
+{% for question in qs %}
+{{question.description|safe}}
+    <br>{% if question.fig %}<img src="{{MEDIA_URL}}{{q.fig}}" width="500" height="200" />{% endif %}
+    {% for answer in question.answer.all %}
+    <br>Answer: {{answer.option}}
+    {% if answer.explanation %}{{answer.explanation|safe}}{% endif %}
+    <br>{% if answer.fig %}<img src="{{MEDIA_URL}}{{answer.fig}}" width="500" height="200" />{% endif %}
+    {% endfor %}
+{% endfor %}    
+{% paginate %}
