@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="home">
+    <div id="aside">
+        {% for exam in exams %}
+        <br><a href='/info/{{exam.specialization.exam_group.slug}}/{{exam.specialization.slug}}/{{exam.slug}}/'>{{exam}}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

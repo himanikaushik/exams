@@ -1,8 +1,19 @@
 from django.contrib import admin
 from core.models import *
 
+class CoreExamGroupAdmin(admin.ModelAdmin):
+    model = ExamGroup
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(ExamGroup,CoreExamGroupAdmin)
+
+class CoreSpecializationAdmin(admin.ModelAdmin):
+    model = Specialization
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(Specialization,CoreSpecializationAdmin)
+
 class CoreExamAdmin(admin.ModelAdmin):
     model = Exam
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Exam,CoreExamAdmin)
 
 class CoreSectionAdmin(admin.ModelAdmin):

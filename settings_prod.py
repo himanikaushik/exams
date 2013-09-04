@@ -3,7 +3,7 @@
 import os
 SETTINGS_FILE_FOLDER = os.path.realpath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="home">
+    <div id="aside">
+        {% for spec in specializations %}
+        <br><a href='/info/{{spec.exam_group.slug}}/{{spec.slug}}/'>{{spec}}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

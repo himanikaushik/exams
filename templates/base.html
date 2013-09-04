@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>{% block title %}{% endblock title %}</title>
+		{% block meta %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		{% endblock meta %}
+		{% block js %}
+        <!--<script src="{{STATIC_URL}}js/jquery-ui.js"></script>-->
+		{% endblock js %}
+
+		{% block css %}
+            <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css" />
+		{% endblock css %}
+		
+	</head>
+	<body>
+        {% block header %}
+          <div id="header">
+            <div id="section">
+                <div><a href="index.html"><img src="{{MEDIA_URL}}images/logo.gif" alt="" /></a></div>
+              <span>examtoppers.com <br />
+              <br />
+              + Toppers Guide</span> </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                {% for exam_group in exam_groups %}
+                <li><a href="/info/{{exam_group.slug}}">{{exam_group}}</a></li>
+                {% endfor %}
+            </ul>
+          </div>
+
+        {% endblock header %}
+        <div id="content">
+			{% block content %}
+
+
+			{% endblock content %}
+		</div>
+        {% block footer %}
+              <div id="footer">
+                <div>
+                  <div class="section">
+                    <ul>
+                      <li><a href="/">Home</a></li>
+                        {% for exam_group in exam_groups %}
+                        <li><a href="/info/{{exam_group.slug}}">{{exam_group}}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <p>Copyright &copy; <a href="#">ExamToppers.in</a> - All Rights Reserved | Template By <a target="_blank" href="http://www.examtoppers.in/">ExamToppers.in</a></p>
+                  </div>
+                </div>
+              </div>
+        {% endblock footer %}
+    </body>
+</html>

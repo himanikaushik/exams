@@ -1,8 +1,25 @@
 from django.db import models
 # Models to store questions, options, answer, comment, courses.
 
+class ExamGroup(models.Model):
+    name = models.CharField(max_length = 150, unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+class Specialization(models.Model):
+    name = models.CharField(max_length = 150, unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    exam_group = models.ForeignKey(ExamGroup)
+    
+    def __unicode__(self):
+        return self.name
+
 class Exam(models.Model):
     name = models.CharField(max_length = 150, unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    specialization = models.ForeignKey(Specialization, null=True, blank=True)
     
     def __unicode__(self):
         return self.name
@@ -31,6 +48,7 @@ class Question(models.Model):
     points = models.IntegerField(default=1)
     course = models.ForeignKey(Course)
     section = models.ForeignKey(Section)
+    reviewed = models.BooleanField(default=False, db_index=True)
 
     def __unicode__(self):
         return self.description
@@ -46,7 +64,7 @@ class Question(models.Model):
 #        return self.sl_no
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, related_name='answer')
+    question = models.OneToOneField(Question, related_name='answer')
     option = models.CharField(max_length=2, choices = (
         ('A','A'),('B','B'),('C','C'),('D','D'),('E','E')))
     explanation = models.TextField()

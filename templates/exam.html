@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load pagination_tags %}
+{% block content %}
+{% autopaginate questions 10 %}
+<div id="home">
+    <div id="aside">
+        {% for question in questions %}
+        <div>{{question.description|safe}}</div>
+        <div>
+            <br>Answer: {{question.answer.option}}
+            {% if question.answer.explanation %}{{question.answer.explanation|safe}}{% endif %}
+        </div>
+        {% endfor %}    
+    </div>
+</div>
+{% paginate %}
+{% endblock content %}
