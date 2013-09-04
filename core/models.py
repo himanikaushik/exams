@@ -9,8 +9,8 @@ class ExamGroup(models.Model):
         return self.name
 
 class Specialization(models.Model):
-    name = models.CharField(max_length = 150, unique=True)
-    slug = models.SlugField(unique=True, null=True, blank=True)
+    name = models.CharField(max_length = 150)
+    slug = models.SlugField(null=True, blank=True)
     exam_group = models.ForeignKey(ExamGroup)
     
     def __unicode__(self):
@@ -25,7 +25,7 @@ class Exam(models.Model):
         return self.name
 
 class Section(models.Model):
-    name = models.CharField(max_length = 150, unique=True)
+    name = models.CharField(max_length = 150)
     exam = models.ForeignKey(Exam)
     instructions = models.TextField()
     negation = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
