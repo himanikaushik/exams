@@ -43,6 +43,7 @@ def upload_to(instance, filename):
     return 'upload/%s/%s' % (instance.__class__.__name__,filename)
 
 class Question(models.Model):
+    sl_num = models.SmallIntegerField(null=True, blank=True)
     description = models.TextField()
     #fig = models.FileField(upload_to=upload_to, null=True, blank=True) # only pdf
     points = models.IntegerField(default=1)
